@@ -1,6 +1,21 @@
 # vizhub-benchmarks
 AI code editing benchmarks for interactive visuals + **training dataset generation**
 
+## Reproducing results and understanding scope
+
+This project contains **benchmark tooling**, a separate grading application, and dataset-export scripts. It does **not** establish that benchmark results are independently reproducible, evaluated by multiple reviewers, or suitable for model training without additional checks.
+
+| Task | Script | Source |
+| --- | --- | --- |
+| Compile source | `npm run build` | root `package.json` |
+| Type-check | `npm run typecheck` | root `package.json` |
+| Run unit tests | `npm test` | Vitest |
+| Execute benchmark CLI | `npm run benchmark` | [`src/cli.ts`](src/cli.ts) |
+| Launch grader development app | `npm run grade` | [`grader-app/`](grader-app/) |
+| Export dataset artifacts | `npm run export:huggingface` | [`scripts/`](scripts/) |
+
+The `benchmark` script **runs the CLI and then copies generated files** into the grader app; confirm file paths and existing generated state before running. Models and API usage may incur costs or require secrets. Read [`METHODOLOGY.md`](METHODOLOGY.md), [`CHALLENGES.md`](CHALLENGES.md), and [`CITATION.md`](CITATION.md) before comparing scores or publishing datasets. The collaborative grading workflow below contains **planned** features; do not describe the ideal architecture as implemented.
+
 ## Overview
 
 This project serves dual strategic purposes:
